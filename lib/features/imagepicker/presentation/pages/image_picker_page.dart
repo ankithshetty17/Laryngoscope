@@ -18,10 +18,15 @@ class ImagePickerPage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        leading: IconButton(onPressed: (){
-          Navigator.push(context, HomeScreen.route(context));
-        }, icon:Icon(Icons.arrow_back_ios,color: AppPallette.iconBg,)),
-        ),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.push(context, HomeScreen.route(context));
+            },
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: AppPallette.iconBg,
+            )),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -38,14 +43,15 @@ class ImagePickerPage extends StatelessWidget {
                 ),
               ),
             ),
-           
+
             Padding(
-              padding: const EdgeInsets.all(20.0),
-              child:  GradientButton(buttonTxt: 'Delete Image', onpressed:(){
-                 context.read<ImagePickerBloc>().add(DeleteImageEvent());
-                 Navigator.pop(context);
-              })
-            ),
+                padding: const EdgeInsets.all(20.0),
+                child: GradientButton(
+                    buttonTxt: 'Delete Image',
+                    onpressed: () {
+                      context.read<ImagePickerBloc>().add(DeleteImageEvent());
+                      Navigator.pop(context);
+                    })),
           ],
         ),
       ),

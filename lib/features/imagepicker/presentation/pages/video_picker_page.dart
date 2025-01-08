@@ -6,7 +6,6 @@ import 'package:laryngoscope/features/Homescreen/presentation/pages/home_screen.
 import 'package:laryngoscope/features/imagepicker/presentation/bloc/image_picker_bloc.dart';
 import 'package:laryngoscope/features/videocall/presentation/widgets/elevated_button.dart';
 import 'package:video_player/video_player.dart';
-import 'package:zoom_widget/zoom_widget.dart';
 
 class VideoPickerPage extends StatelessWidget {
   final String videoPath;
@@ -16,7 +15,8 @@ class VideoPickerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Initialize the video player controller
-    VideoPlayerController _controller = VideoPlayerController.file(File(videoPath));
+    VideoPlayerController _controller =
+        VideoPlayerController.file(File(videoPath));
 
     return Scaffold(
       appBar: AppBar(
@@ -38,20 +38,20 @@ class VideoPickerPage extends StatelessWidget {
           children: [
             // Wrapping Zoom widget with a container to ensure a defined size
             Expanded(
-              child:  FutureBuilder(
-                  future: _controller.initialize(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.done) {
-                      _controller.play();
-                      return AspectRatio(
-                        aspectRatio: _controller.value.aspectRatio,
-                        child: VideoPlayer(_controller),
-                      );
-                    } else {
-                      return CircularProgressIndicator();
-                    }
-                  },
-                ),
+              child: FutureBuilder(
+                future: _controller.initialize(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    _controller.play();
+                    return AspectRatio(
+                      aspectRatio: _controller.value.aspectRatio,
+                      child: VideoPlayer(_controller),
+                    );
+                  } else {
+                    return CircularProgressIndicator();
+                  }
+                },
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),

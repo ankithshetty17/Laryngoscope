@@ -23,7 +23,7 @@ class _CameraPreviewPageState extends State<CameraPreviewPage> {
     try {
       // Get available cameras
       cameras = await availableCameras();
-      
+
       // If no cameras are available, throw an error
       if (cameras.isEmpty) {
         throw Exception('No cameras available');
@@ -70,7 +70,9 @@ class _CameraPreviewPageState extends State<CameraPreviewPage> {
               aspectRatio: cameraController.value.aspectRatio,
               child: CameraPreview(cameraController),
             )
-          : const Center(child: CircularProgressIndicator()), // Show progress until camera is ready
+          : const Center(
+              child:
+                  CircularProgressIndicator()), // Show progress until camera is ready
     );
   }
 }

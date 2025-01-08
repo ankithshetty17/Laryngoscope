@@ -34,8 +34,12 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
-  flutter_svg: ^2.0.16
+  flutter_svg: ^2.0.9
+  gallery_saver: ^2.3.0
   image_picker: ^1.1.2
+  path: ^1.9.0
+  path_provider: ^2.1.5
+  permission_handler: ^11.3.1
   video_player: ^2.9.2
   zego_uikit_prebuilt_call: ^4.16.21
   zoom_widget: ^2.0.1

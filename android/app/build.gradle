@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.example.laryngoscope"
     // compileSdk = flutter.compileSdkVersion
-    compileSdk = 33
+    compileSdk = 34
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
