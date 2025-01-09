@@ -49,4 +49,5 @@ flutter {
 //zegocloud config
 dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+  
 }

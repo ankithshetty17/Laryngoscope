@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laryngoscope/core/app_pallette.dart';
 import 'package:laryngoscope/features/Homescreen/presentation/pages/home_screen.dart';
-import 'package:laryngoscope/features/imagepicker/presentation/bloc/image_picker_bloc.dart';
 import 'package:laryngoscope/features/videocall/presentation/widgets/elevated_button.dart';
+import 'package:laryngoscope/features/videopicker/presentation/bloc/video_picker_bloc.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPickerPage extends StatelessWidget {
@@ -48,7 +48,7 @@ class VideoPickerPage extends StatelessWidget {
                       child: VideoPlayer(_controller),
                     );
                   } else {
-                    return CircularProgressIndicator();
+                    return Center(child: CircularProgressIndicator(),);
                   }
                 },
               ),
@@ -58,7 +58,7 @@ class VideoPickerPage extends StatelessWidget {
               child: GradientButton(
                 buttonTxt: 'Delete Video',
                 onpressed: () {
-                  context.read<ImagePickerBloc>().add(DeleteVideoEvent());
+                  context.read<VideoPickerBloc>().add(DeleteVideoEvent());
                   Navigator.pop(context);
                 },
               ),

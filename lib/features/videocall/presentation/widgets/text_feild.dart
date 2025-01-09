@@ -33,6 +33,9 @@ class textFeild extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(color: Colors.grey, width: 2),
               ),
+               errorBorder: OutlineInputBorder( // Red border when validation fails
+                borderSide: BorderSide(color: Colors.red, width: 2),
+              ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(color: AppPallette.borderClr, width: 2),

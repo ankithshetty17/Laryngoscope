@@ -4,6 +4,7 @@ import 'package:laryngoscope/features/Homescreen/presentation/bloc/home_bloc.dar
 import 'package:laryngoscope/features/Homescreen/presentation/pages/home_screen.dart';
 import 'package:laryngoscope/features/camerapreview/presentation/bloc/camera_bloc.dart';
 import 'package:laryngoscope/features/imagepicker/presentation/bloc/image_picker_bloc.dart';
+import 'package:laryngoscope/features/videopicker/presentation/bloc/video_picker_bloc.dart';
 
 
 void main() {
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => HomeBloc()),
         BlocProvider(create: (_) => ImagePickerBloc()),
         BlocProvider(create: (_) => CameraBloc()),
+        BlocProvider(create: (_) => VideoPickerBloc()),
       ],
       child: MaterialApp(
           theme: ThemeData(useMaterial3: true),

@@ -1,10 +1,12 @@
+import 'package:battery_plus/battery_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laryngoscope/features/Homescreen/presentation/bloc/home_bloc.dart';
 import 'package:laryngoscope/features/camerapreview/presentation/bloc/camera_bloc.dart';
 import 'package:laryngoscope/features/imagepicker/presentation/bloc/image_picker_bloc.dart';
 import 'package:laryngoscope/features/imagepicker/presentation/pages/image_picker_page.dart';
-import 'package:laryngoscope/features/imagepicker/presentation/pages/video_picker_page.dart';
+import 'package:laryngoscope/features/videopicker/presentation/bloc/video_picker_bloc.dart';
+import 'package:laryngoscope/features/videopicker/presentation/pages/video_picker_page.dart';
 import 'package:laryngoscope/features/videocall/presentation/pages/videocall_screen.dart';
 
 import '../../../../core/app_pallette.dart';
@@ -14,11 +16,11 @@ import '../../../../core/app_pallette.dart';
 Widget buildCameraIcon(BuildContext context) {
   return BlocListener<CameraBloc, CameraState>(
     listener: (context, state) {
-      if (state is CameraCaptureSuccess) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Image saved at ${state.imagePath}')),
-                    );
-                  } else if (state is CameraCaptureFailure) {
+      if (state is OpenCameraSuccess) {
+                    // ScaffoldMessenger.of(context).showSnackBar(
+                    //   SnackBar(content: Text('Image saved at ${state.imagePath}')),
+                    // );
+                  } else if (state is OpenCameraFailure) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Error: ${state.error}')),
                     );
@@ -27,7 +29,7 @@ Widget buildCameraIcon(BuildContext context) {
     child: IconButton(
       onPressed: () {
          context.read<CameraBloc>().add(OpenCameraEvent());
-         context.read<CameraBloc>().add(CaptureImageEvent());
+        //  context.read<CameraBloc>().add(CaptureImageEvent());
       },
       icon: Icon(Icons.camera_alt, color: AppPallette.iconBg, size: 25),
     ),
@@ -52,6 +54,7 @@ Widget selectImageIcon(BuildContext context) {
     child: IconButton(
       onPressed: () {
         context.read<ImagePickerBloc>().add(PickImageEvent());
+       
       },
       icon: Icon(Icons.photo_size_select_actual_rounded,
           color: AppPallette.iconBg, size: 25),
@@ -60,18 +63,21 @@ Widget selectImageIcon(BuildContext context) {
 }
 
 Widget selectVideoIcon(BuildContext context) {
-  return BlocListener<ImagePickerBloc, ImagePickerState>(
+  return BlocListener<VideoPickerBloc, VideoPickerState>(
     listener: (context, state) {
       if (state is VideoPickedSuccess) {
         // Navigate to ImagePickerPage when image is picked successfully
-        MaterialPageRoute(
-          builder: (_) => VideoPickerPage(videoPath: state.videoPath),
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => VideoPickerPage(videoPath: state.videoPath),
+          ),
         );
       }
     },
     child: IconButton(
         onPressed: () {
-          context.read<ImagePickerBloc>().add(PickVideoEvent());
+          context.read<VideoPickerBloc>().add(PickVideoEvent());
         },
         icon: Icon(Icons.video_camera_back_sharp,
             color: AppPallette.iconBg, size: 25)),
@@ -94,3 +100,5 @@ Widget screenRotationIcon(BuildContext context) {
       icon: Icon(Icons.screen_rotation_alt_outlined,
           color: AppPallette.iconBg, size: 25));
 }
+
+ 

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 
 part 'image_picker_event.dart';
 part 'image_picker_state.dart';
@@ -21,25 +22,12 @@ class ImagePickerBloc extends Bloc<ImagePickerEvent, ImagePickerState> {
       }
     });
 
-    on<PickVideoEvent>((event, emit) async {
-      try {
-        final pickedFile = await _picker.pickVideo(source: ImageSource.gallery);
-        if (pickedFile != null) {
-          emit(VideoPickedSuccess(pickedFile.path));
-        } else {
-          emit(VideoFailure("No video selected"));
-        }
-      } catch (e) {
-        emit(VideoFailure("Error picking video: $e"));
-      }
-    });
+    
 
-    on<DeleteImageEvent>((event, emit) {
+    on<DeleteImageEvent>((event, emit) async{
       emit(ImagePickerInitial());
     });
 
-    on<DeleteVideoEvent>((event, emit) {
-      emit(ImagePickerInitial());
-    });
+  
   }
 }

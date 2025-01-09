@@ -5,8 +5,7 @@ sealed class ImagePickerEvent {}
 
 class PickImageEvent extends ImagePickerEvent {}
 
-class PickVideoEvent extends ImagePickerEvent {}
 
 class DeleteImageEvent extends ImagePickerEvent {}
 
-class DeleteVideoEvent extends ImagePickerEvent {}
+

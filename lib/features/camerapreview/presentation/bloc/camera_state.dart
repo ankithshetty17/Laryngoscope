@@ -7,13 +7,13 @@ final class CameraInitial extends CameraState {}
 
 class CameraCaptureInProgress extends CameraState {}
 
-class CameraCaptureSuccess extends CameraState{
+class OpenCameraSuccess extends CameraState{
   final String imagePath;
-  CameraCaptureSuccess(this.imagePath);
+  OpenCameraSuccess(this.imagePath);
 }
 
 
-class CameraCaptureFailure extends CameraState{
+class OpenCameraFailure extends CameraState{
   final String error;
-  CameraCaptureFailure(this.error);
+  OpenCameraFailure(this.error);
 }

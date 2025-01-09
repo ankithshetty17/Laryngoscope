@@ -6,4 +6,4 @@ sealed class CameraEvent {}
 
 class OpenCameraEvent extends CameraEvent {}
 
-class CaptureImageEvent extends CameraEvent {}
+// class CaptureImageEvent extends CameraEvent {}
