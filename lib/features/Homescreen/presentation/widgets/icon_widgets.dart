@@ -1,39 +1,22 @@
-import 'package:battery_plus/battery_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laryngoscope/features/Homescreen/presentation/bloc/home_bloc.dart';
-import 'package:laryngoscope/features/camerapreview/presentation/bloc/camera_bloc.dart';
 import 'package:laryngoscope/features/imagepicker/presentation/bloc/image_picker_bloc.dart';
 import 'package:laryngoscope/features/imagepicker/presentation/pages/image_picker_page.dart';
 import 'package:laryngoscope/features/videopicker/presentation/bloc/video_picker_bloc.dart';
 import 'package:laryngoscope/features/videopicker/presentation/pages/video_picker_page.dart';
-import 'package:laryngoscope/features/videocall/presentation/pages/videocall_screen.dart';
-
 import '../../../../core/app_pallette.dart';
 
 
 
 Widget buildCameraIcon(BuildContext context) {
-  return BlocListener<CameraBloc, CameraState>(
-    listener: (context, state) {
-      if (state is OpenCameraSuccess) {
-                    // ScaffoldMessenger.of(context).showSnackBar(
-                    //   SnackBar(content: Text('Image saved at ${state.imagePath}')),
-                    // );
-                  } else if (state is OpenCameraFailure) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Error: ${state.error}')),
-                    );
-                  }
-    },
-    child: IconButton(
+  return  IconButton(
       onPressed: () {
-         context.read<CameraBloc>().add(OpenCameraEvent());
+         context.read<HomeBloc>().add(CameraIconClickedEvent());
         //  context.read<CameraBloc>().add(CaptureImageEvent());
       },
       icon: Icon(Icons.camera_alt, color: AppPallette.iconBg, size: 25),
-    ),
-  );
+    );
 }
 
 
@@ -87,7 +70,7 @@ Widget selectVideoIcon(BuildContext context) {
 Widget videoCallIcon(BuildContext context) {
   return IconButton(
       onPressed: () {
-        Navigator.push(context, VideocallScreen.route(context));
+       context.read<HomeBloc>().add(VideoCallIconClicked());
       },
       icon: Icon(Icons.video_call, color: AppPallette.iconBg, size: 25));
 }
@@ -101,4 +84,21 @@ Widget screenRotationIcon(BuildContext context) {
           color: AppPallette.iconBg, size: 25));
 }
 
- 
+  void showLowBatteryDialog(BuildContext context, int batteryLevel) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Low Battery'),
+          content: Text(
+              'Your battery level is below 20% ($batteryLevel%). Please charge your phone.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }

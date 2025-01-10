@@ -26,3 +26,27 @@ class CameraToggleFailure extends HomeState {
   final String error;
   CameraToggleFailure(this.error);
 }
+
+//battery low
+class BatteryLow extends HomeState {
+  final int batteryLevel;
+
+  BatteryLow(this.batteryLevel);
+}
+
+//battery normal
+class BatteryNormal extends HomeState {}
+
+class LoadVideoCallPage extends HomeState{}
+
+
+class OpenCameraSuccess extends HomeState{
+  final String imagePath;
+  OpenCameraSuccess(this.imagePath);
+}
+
+
+class OpenCameraFailure extends HomeState{
+  final String error;
+  OpenCameraFailure(this.error);
+}

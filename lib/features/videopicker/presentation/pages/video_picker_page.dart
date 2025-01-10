@@ -15,8 +15,7 @@ class VideoPickerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Initialize the video player controller
-    VideoPlayerController _controller =
-        VideoPlayerController.file(File(videoPath));
+    VideoPlayerController _controller = VideoPlayerController.file(File(videoPath));
 
     return Scaffold(
       appBar: AppBar(

@@ -13,3 +13,12 @@ class OnScreenOrientation extends HomeEvent {}
 
 //event for toggling frontcaera tobackcamera in camerapreview
 class CameraToggleEvent extends HomeEvent {}
+
+//event for Batteryevel alert
+class CheckBatteryLevel  extends HomeEvent{}
+
+
+class VideoCallIconClicked extends HomeEvent{}
+
+
+class CameraIconClickedEvent extends HomeEvent {}
